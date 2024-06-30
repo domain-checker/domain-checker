@@ -1,0 +1,2 @@
+pyTelegramBotAPI==4.20.0
+python-whois==0.9.4
