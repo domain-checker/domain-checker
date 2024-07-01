@@ -1,11 +1,11 @@
 # Domain Checker Telegram Bot
 
-## Installation
+## Getting Started
 
 1. Clone the project repository.
 
 ```bash
-git clone https://github.com/sweeenlim/domain-checker.git
+git clone https://github.com/domain-checker/domain-checker.git
 cd domain-checker
 ```
 
@@ -17,13 +17,13 @@ cd domain-checker
 pip install -r requirements.txt
 ```
 
-3. Create a new `.env` file and add your bot token.
-
-> A sample `.env` file can be found in `.env.example`.
+3. Create a new `.env` file and add your unique bot token from the [BotFather](https://core.telegram.org/bots/tutorial#obtain-your-bot-token) in the following format:
 
 ```bash
-export BOT_TOKEN=
+export BOT_TOKEN=<INSERT-BOT-TOKEN-HERE>
 ```
+
+> An example `.env` file can be found in `.env.example`.
 
 4. Read the environment variables from the `.env` file.
 
@@ -39,4 +39,6 @@ python3 -u bot.py
 
 Congratulations! You have successfully started your Telegram bot. :tada:
 
-## Deployment
+## Acknowledgements
+
+- Python libraries used: [pyTelegramBotAPI](https://pytba.readthedocs.io/en/latest/index.html), [python-whois](https://pypi.org/project/python-whois/)
