@@ -1,7 +1,6 @@
 import os
 
 import telebot
-
 import whois
 
 BOT_TOKEN = os.environ.get('BOT_TOKEN')
@@ -32,4 +31,5 @@ def checkDomain(message):
         bot.reply_to(message, reply)
 
 
-bot.infinity_polling()
+def main():
+    bot.infinity_polling()
