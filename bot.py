@@ -15,20 +15,35 @@ def send_welcome(message):
     except AttributeError:
         user_first_name = "User"
 
-    reply = f"Hello {user_first_name}! This is a simple telegram bot to check the registrar for a given domain via WHOIS data😃. Just enter your domain name🔍"
+    reply = f"Hello {user_first_name}! 👋 Enter a domain name to check its registrar via WHOIS data 🔍 and whether it belongs to HSBC:"
 
     bot.reply_to(message, reply)
 
 
 @bot.message_handler(func=lambda message: True)
-def checkDomain(message):
-    w = whois.whois(str(message.text))
-    registrar = w.registrar
+def check_domain(message):
+    try:
+        w = whois.whois(str(message.text))
+        registrar = w.registrar
+    except:
+        bot.reply_to(message, "Domain does not exist ⚠️")
+        return
+
     if registrar is None:
-        bot.reply_to(message, "Domain does not exist")
-    else:
-        reply = f"Registrar is {registrar}"
-        bot.reply_to(message, reply)
+        bot.reply_to(message, "Domain does not exist ⚠️")
+        return
+
+    if not is_hsbc(registrar):
+        reply = f"Domain\'s registrar is <b>{registrar}</b> and does <b>not</b> belong to HSBC ❌"
+        bot.reply_to(message, reply, parse_mode="HTML")
+        return
+
+    reply = f"Domain\'s registrar is <b>{registrar}</b>"
+    bot.reply_to(message, reply, parse_mode="HTML")
+
+
+def is_hsbc(registrar: str):
+    return "markmonitor" in registrar.lower()
 
 
 def main():
